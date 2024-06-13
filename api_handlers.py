@@ -13,6 +13,8 @@ async def get_crypto_price(crypto):
         "X-CMC_PRO_API_KEY": cfg.cmc_api_key,
     }
     async with aiohttp.ClientSession() as session:
-        async with session.get(cfg.cmc_url, headers=headers, params=parameters) as response:
+        async with session.get(
+            cfg.cmc_url, headers=headers, params=parameters
+        ) as response:
             data = await response.json()
             return data["data"][crypto]["quote"]["USD"]["price"]
